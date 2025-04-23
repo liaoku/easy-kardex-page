@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="img/logo.png">
+  <title>Easy Kardex - Outsourcing de Kardex Tributario</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #1B9CFC;
+      --dark: #0A3D62;
+      --light: #F4F8FB;
+      --accent: #FFFFFF;
+      --shadow: rgba(0, 0, 0, 0.1);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      color: #333;
+      background: var(--light);
+      scroll-behavior: smooth;
+    }
+    a { text-decoration: none; color: inherit; }
+    .container { width: 90%; max-width: 1200px; margin: 0 auto; }
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(10, 97, 159, 0.67);
+      backdrop-filter: blur(10px);
+      color: #fff;
+      z-index: 1000;
+    }
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+    }
+    .logo { font-size: 1.5rem; font-weight: 700; }
+    nav ul {
+      display: flex;
+      gap: 1.5rem;
+    }
+    nav ul li a {
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+    nav ul li a:hover { color: var(--primary); }
+    .nav-toggle { display: none; color: #fff; font-size: 1.5rem; cursor: pointer; }
+    .hero {
+      height: 100vh;
+      background: linear-gradient(135deg, #1B9CFC 0%, #0A3D62 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #fff;
+      padding: 0 1rem;
+    }
+    .hero h1 { font-size: 3rem; margin-bottom: 1rem; }
+    .hero p {
+      font-size: 1.25rem;
+      margin-bottom: 2rem;
+      max-width: 600px;
+    }
+    .btn {
+      background: var(--accent);
+      color: var(--dark);
+      padding: 0.75rem 1.5rem;
+      border-radius: 4px;
+      font-weight: 600;
+      transition: transform 0.3s, background 0.3s;
+    }
+    .btn:hover {
+      transform: translateY(-3px);
+      background: #e1e9f5;
+    }
+    section { padding: 4rem 0; }
+    h2 {
+      text-align: center;
+      color: var(--dark);
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
+    .services .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+    .card {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px var(--shadow);
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 12px var(--shadow);
+    }
+    .card i {
+      font-size: 2rem;
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+    .how-it-works .step {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .step-number {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary);
+      background: var(--accent);
+      padding: 0.5rem 0.75rem;
+      border-radius: 50%;
+      min-width: 2.5rem;
+      text-align: center;
+    }
+    .contact-form {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px var(--shadow);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .contact-form h2 {
+      margin-bottom: 1rem;
+      color: var(--dark);
+    }
+    .contact-form .form-group {
+      margin-bottom: 1rem;
+    }
+    .contact-form label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-family: 'Inter', sans-serif;
+    }
+    .contact-form textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+    .contact-form button {
+      background: var(--primary);
+      color: #fff;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 4px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .contact-form button:hover {
+      background: #1788d4;
+    }
+    footer {
+      background: var(--dark);
+      color: #fff;
+      padding: 3rem 0;
+      text-align: center;
+      margin-top: 2rem;
+    }
+    footer a { color: var(--primary); }
+    @media (max-width: 768px) {
+      .nav-toggle { display: block; }
+      nav ul { display: none; flex-direction: column; background: var(--dark); position: absolute; top: 100%; left: 0; width: 100%; }
+      nav ul.show { display: flex; }
+      .hero h1 { font-size: 2.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container navbar">
+        <div class="logo">
+            <img src="img/logo.png" alt="Easy Kardex Logo" style="height: 40px; vertical-align: middle;">
+            Easy Kardex
+        </div>
+      <div class="nav-toggle"><i class="fa fa-bars"></i></div>
+      <nav>
+        <ul>
+          <li><a href="#about">Nosotros</a></li>
+          <li><a href="#services">Servicios</a></li>
+          <li><a href="#how">Cómo Funciona</a></li>
+          <li><a href="#contact">Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <section class="hero">
+      <h1>Externaliza tu gestión de Kardex Tributario</h1>
+      <p>En Easy Kardex administramos tus inventarios de inversión y calculamos tu carga impositiva. Tú envías los extractos bancarios, nosotros hacemos el resto.</p>
+      <a href="#contact" class="btn">Solicita una demo</a>
+    </section>
+    <section id="about" class="container">
+      <h2>Quiénes Somos</h2>
+      <p style="text-align: center;">Somos especialistas en outsourcing de kardex tributario de inversiones. A través de nuestra plataforma, mantenemos tus inventarios actualizados y generamos reportes claros y precisos, cumpliendo con todas las normativas tributarias.</p>
+    </section>
+    <section id="services" class="container services">
+      <h2>Servicios</h2>
+      <div class="grid">
+        <div class="card">
+          <i class="fa fa-database"></i>
+          <h3>Administración de Kardex</h3>
+          <p>Actualizamos tus inventarios con cada transacción registrada de forma automática.</p>
+        </div>
+        <div class="card">
+          <i class="fa fa-calculator"></i>
+          <h3>Determinacion precisa de base imponible</h3>
+          <p>Calculamos automáticamente datos claves para definir con exactitud la base imponible de tus inversiones.</p>
+        </div>
+        <div class="card">
+          <i class="fa fa-cloud"></i>
+          <h3>Plataforma Online</h3>
+          <p>Accede a información en tiempo real desde cualquier dispositivo.</p>
+        </div>
+      </div>
+    </section>
+    <section id="how"  class="container how-it-works">
+      <h2>Cómo Funciona</h2>
+      <div class="step">
+        <div class="step-number">1</div>
+        <p>Envía tus extractos bancarios de inversión.</p>
+      </div>
+      <div class="step">
+        <div class="step-number">2</div>
+        <p>Procesamos y actualizamos tu kardex automáticamente.</p>
+      </div>
+      <div class="step">
+        <div class="step-number">3</div>
+        <p>Descarga resumenes de tus kardex y gestiona tu carga impositiva.</p>
+      </div>
+    </section>
+    <section id="contact-form" class="container contact-form">
+      <h2>Contáctanos</h2>
+      <form action="https://formcarry.com/s/J7tmMV6jxRJ" method="POST" enctype="multipart/form-data">
+        <div class="form-group">
+          <label for="email">Correo electrónico</label>
+          <input type="email" id="email" name="email" placeholder="tú@ejemplo.cl" required>
+        </div>
+        <div class="form-group">
+          <label for="phone">Teléfono</label>
+          <input type="tel" id="phone" name="phone" placeholder="+56 9 1234 5678" required>
+        </div>
+        <input type="hidden" id="easykardex" name="easykardex" value="yes">
+        <div class="form-group">
+          <label for="message">Mensaje</label>
+          <textarea id="message" name="message" placeholder="¿Cómo podemos ayudarte?" required></textarea>
+        </div>
+        <button type="submit">Enviar</button>
+      </form>
+    </section>
+  </main>
+  <footer id="contact">
+    <div class="container">
+      <h2>Contacto</h2>
+      <p> Tel: +56 9 5768 3731</p>
+      <p>Síguenos en <a href="#">LinkedIn</a> 
+    </div>
+  </footer>
+  <script>
+    const toggle = document.querySelector('.nav-toggle');
+    const menu = document.querySelector('nav ul');
+    toggle.addEventListener('click', () => { menu.classList.toggle('show'); });
+  </script>
+</body>
+</html>
